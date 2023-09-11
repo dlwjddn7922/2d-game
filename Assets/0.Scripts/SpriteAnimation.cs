@@ -34,7 +34,7 @@ public class SpriteAnimation : MonoBehaviour
             animationIndex++;
 
             // 이미지의 갯수가 넘어가면 처음부터 다시
-            if(animationIndex >= sprites.Count)
+            if(animationIndex >= sprites.Count -1)
             {
                 animationIndex = 0;
             }
@@ -42,11 +42,27 @@ public class SpriteAnimation : MonoBehaviour
 
     }
 
+    private void Init()
+    {
+        if (sr == null)
+            sr = GetComponent<SpriteRenderer>();
+        
+        animationIndex = 0;
+        sprites = null;
+        delay = 0;
+        isLoop = false;
+        animationDelayTimer = 0;
+        //animationDelayTimer = float.MaxValue;
+    }
     public void SetSprite(List<Sprite> sprite, float delay, bool isLoop = true)
     {
+        Init();
+
         sprites = sprite.ToList();
         this.delay = delay;
         this.isLoop = isLoop;
+
+        sr.sprite = sprites[0];
     }
 
 }
