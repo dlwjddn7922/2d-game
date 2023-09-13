@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteAnimation : MonoBehaviour
@@ -11,6 +12,7 @@ public class SpriteAnimation : MonoBehaviour
     private List<Sprite> sprites = new List<Sprite>();
     private float delay;
     private bool isLoop;
+    private UnityAction action;
 
     private int animationIndex = 0;
     private float animationDelayTimer = 0;
@@ -34,9 +36,17 @@ public class SpriteAnimation : MonoBehaviour
             animationIndex++;
 
             // 이미지의 갯수가 넘어가면 처음부터 다시
-            if(animationIndex >= sprites.Count -1)
+            if(isLoop == true && animationIndex >= sprites.Count -1)
             {
                 animationIndex = 0;
+            }
+            else
+            {
+                if(action != null)
+                {
+                    action();
+                    action = null;
+                }
             }
         }
 
@@ -65,4 +75,16 @@ public class SpriteAnimation : MonoBehaviour
         sr.sprite = sprites[0];
     }
 
+    public void SetSprite(List<Sprite> sprite, float endDelay, UnityAction action)
+    {
+        Init();
+
+        sprites = sprite.ToList();
+        this.delay = endDelay;
+        this.isLoop = false;
+
+        this.action = action;
+
+        sr.sprite = sprites[0];
+    }
 }

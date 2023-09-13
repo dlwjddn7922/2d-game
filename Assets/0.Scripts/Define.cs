@@ -29,5 +29,6 @@ public static class Define
         public int HP { get; set; }
         public float Speed { get; set; }
         public float AttackRange { get; set; }
+        public float HitDelayTime { get; set; }
     }
 }

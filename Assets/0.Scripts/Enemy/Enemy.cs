@@ -15,21 +15,29 @@ public class Enemy : MonoBehaviour
 
     private Coroutine hitCor;
 
+    private float hitTimer = 0;
+
     // Start is called before the first frame update
     void Start()
     {       
         sa = GetComponent<SpriteAnimation>();
         sr = GetComponent<SpriteRenderer>();
+        data.HP = 10;
         data.Speed = 1.5f;
-        data.AttackRange = 1f;
+        data.AttackRange = 0.5f;
+        data.HitDelayTime = 0.5f;
         sa.SetSprite(moveSprites, 0.2f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(state == Define.EnemyState.Hit)
+        if (target == null)
+            return;
+
+        if (hitTimer > 0 && state == Define.EnemyState.Hit)
         {
+            hitTimer -= Time.deltaTime;
             return;
         }
 
@@ -55,10 +63,6 @@ public class Enemy : MonoBehaviour
             state = Define.EnemyState.Move;
             sa.SetSprite(moveSprites, 0.2f);
         }
-        if(Input.GetKeyDown(KeyCode.F1))
-        {
-            Hit(1);
-        }
     }
     IEnumerator SetNormalState()
     {
@@ -77,14 +81,19 @@ public class Enemy : MonoBehaviour
         data.HP -= damage;
         state = Define.EnemyState.Hit;
         sa.SetSprite(hitSprites, 0.1f);
-        if (hitCor != null)
-        {
-            StopCoroutine(hitCor);
-        }
-        hitCor = StartCoroutine("SetNormalState");
+        // 타격을 받았을때 프리징 되기 
+        hitTimer = data.HitDelayTime;
+        //hp가 바닥일 경우 죽는다
         if(data.HP <= 0)
         {
-            //dead
+            Dead();   
+        }
+        void Dead()
+        {
+            target = null;
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            sa.SetSprite(deadSprites, 1f, () => Destroy(gameObject));
         }
     }
+
 }
