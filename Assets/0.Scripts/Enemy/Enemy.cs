@@ -95,5 +95,17 @@ public class Enemy : MonoBehaviour
             sa.SetSprite(deadSprites, 1f, () => Destroy(gameObject));
         }
     }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.GetComponent<PlayerBullet>())
+        {
 
+            Hit(10);
+            Destroy(collision.gameObject);
+        }
+        if(collision.GetComponent<Shield>())
+        {
+            Hit(10);
+        }
+    }
 }

@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private List<Sprite> standSprite;
     [SerializeField] private List<Sprite> moveSprite;
+    [SerializeField] private PlayerBullet bullet;
+    [SerializeField] private Transform fireTrans;
+    [SerializeField] private Transform bulletParent;
 
     Define.PlayerData data = new Define.PlayerData();
     Define.PlayerState state = Define.PlayerState.Stand;
@@ -19,13 +22,15 @@ public class Player : MonoBehaviour
 
     private int shieldCnt = 0;
     private float shieldSpeed = 100f;
+    private float fireTimer = float.MaxValue;
+    private float fireDelayTime = 1f;
     public int Shield
     {
         set
         {
-            if(value >= 0)
+            if(value > 0)
             {
-                for (int i = transform.childCount - 1; i >= 0; i--)
+                for (int i = shields.Count - 1; i >= 0; i--)
                 {
                     Destroy(shields[i].gameObject);
                 }
@@ -83,6 +88,7 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F1))
         {
             Shield = ++shieldCnt;
+            Debug.Log("dd");
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -94,6 +100,42 @@ public class Player : MonoBehaviour
             {
                 s.Rotate(new Vector3(0f, 0f, Time.deltaTime * -shieldSpeed));
             }
+        }      
+        Collider2D[] findMonsters = Physics2D.OverlapCircleAll(fireTrans.position, 2);
+        float distance = float.MaxValue;
+        Transform target = null;
+        if(findMonsters.Length != 0)
+        {
+            foreach (var mon in findMonsters)
+            {
+                float dis = Vector2.Distance(transform.position, mon.transform.position);
+
+                if(dis < distance)
+                {
+                    distance = dis;
+                    target = mon.transform;
+                }
+            }
+        }
+        fireTimer += Time.deltaTime;
+        if(target != null && fireTimer > 2f)
+        {
+            fireTimer = 0f;
+
+            //타겟을 찾아 방향전환
+            Vector2 vec = fireTrans.position - target.transform.position;
+            float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+            fireTrans.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+
+            PlayerBullet b = Instantiate(bullet, fireTrans);
+            b.transform.SetParent(bulletParent);
+            
         }
     }
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(fireTrans.transform.position, 2f);
+    }
+
 }
