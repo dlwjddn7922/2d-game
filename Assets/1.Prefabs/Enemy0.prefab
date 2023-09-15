@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 688106881545891274}
   - component: {fileID: 688106881545891270}
   - component: {fileID: 6760533873445196308}
-  m_Layer: 6
+  m_Layer: 31
   m_Name: Enemy0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,6 +57,9 @@ MonoBehaviour:
   - {fileID: -392852972, guid: 1bc6097228993f045852159e71f81d5b, type: 3}
   deadSprites:
   - {fileID: 1261089785, guid: 1bc6097228993f045852159e71f81d5b, type: 3}
+  itemParent: {fileID: 0}
+  items:
+  - {fileID: 7519653529255524983, guid: 93c10b0afe506d84e8506a7405f5bfd0, type: 3}
   target: {fileID: 0}
 --- !u!212 &688106881545891273
 SpriteRenderer:

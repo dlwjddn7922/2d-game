@@ -7,12 +7,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private List<Sprite> moveSprites;
     [SerializeField] private List<Sprite> hitSprites;
     [SerializeField] private List<Sprite> deadSprites;
+    [SerializeField] private Transform itemParent;
+
+    [SerializeField] private List<Item> items;
     public Transform target;
     Define.EnemyData data = new Define.EnemyData();
     Define.EnemyState state = Define.EnemyState.Move;
     private SpriteAnimation sa;
     private SpriteRenderer sr;
-
     private Coroutine hitCor;
 
     private float hitTimer = 0;
@@ -22,6 +24,7 @@ public class Enemy : MonoBehaviour
     {       
         sa = GetComponent<SpriteAnimation>();
         sr = GetComponent<SpriteRenderer>();
+        data.Level = 1;
         data.HP = 10;
         data.Speed = 1.5f;
         data.AttackRange = 0.5f;
@@ -86,18 +89,23 @@ public class Enemy : MonoBehaviour
         //hp°¡ ¹Ù´ÚÀÏ °æ¿ì Á×´Â´Ù
         if(data.HP <= 0)
         {
-            Dead();   
-        }
-        void Dead()
-        {
             target = null;
             GetComponent<CapsuleCollider2D>().enabled = false;
-            sa.SetSprite(deadSprites, 1f, () => Destroy(gameObject));
+            sa.SetSprite(deadSprites, 1f, DropItem);
+
+        }
+        void DropItem()
+        {
+            Item i = Instantiate(items[Random.Range(0, data.Level)], transform.position, Quaternion.identity);
+            i.transform.SetParent(itemParent);
+                
+            Destroy(gameObject);            
         }
     }
+    string[] hitTags = { "bullet", "shield" };
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<PlayerBullet>())
+        /*if(collision.GetComponent<PlayerBullet>())
         {
 
             Hit(10);
@@ -106,6 +114,15 @@ public class Enemy : MonoBehaviour
         if(collision.GetComponent<Shield>())
         {
             Hit(10);
+        }*/
+        foreach (var tag in hitTags)
+        {
+            if(collision.CompareTag(tag))
+            {
+                Hit(5);
+                if(tag != "shield")
+                    Destroy(collision.gameObject);
+            }
         }
     }
 }

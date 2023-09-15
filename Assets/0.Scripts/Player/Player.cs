@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private float shieldSpeed = 100f;
     private float fireTimer = float.MaxValue;
     private float fireDelayTime = 1f;
+    private float radius = 3f;
     public int Shield
     {
         set
@@ -57,6 +58,9 @@ public class Player : MonoBehaviour
         //Shield = 0;
         data.Speed = 3f;
         state = Define.PlayerState.Stand;
+
+        data.Level = 1;
+        data.KillCount = 0;
     }
 
     void Update()
@@ -88,7 +92,6 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F1))
         {
             Shield = ++shieldCnt;
-            Debug.Log("dd");
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -100,17 +103,28 @@ public class Player : MonoBehaviour
             {
                 s.Rotate(new Vector3(0f, 0f, Time.deltaTime * -shieldSpeed));
             }
-        }      
-        Collider2D[] findMonsters = Physics2D.OverlapCircleAll(fireTrans.position, 2);
+        }
+        // 가장 가까운 적을 찾아 발사
+        FireBullet();
+
+    }
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(fireTrans.transform.position, 3f);
+    }
+    public void FireBullet()
+    {
+        Collider2D[] findMonsters = Physics2D.OverlapCircleAll(fireTrans.position, radius, LayerMask.GetMask("Monster"));
         float distance = float.MaxValue;
         Transform target = null;
-        if(findMonsters.Length != 0)
+        if (findMonsters.Length != 0)
         {
             foreach (var mon in findMonsters)
             {
                 float dis = Vector2.Distance(transform.position, mon.transform.position);
 
-                if(dis < distance)
+                if (dis < distance)
                 {
                     distance = dis;
                     target = mon.transform;
@@ -118,7 +132,7 @@ public class Player : MonoBehaviour
             }
         }
         fireTimer += Time.deltaTime;
-        if(target != null && fireTimer > 2f)
+        if (target != null && fireTimer > 1f)
         {
             fireTimer = 0f;
 
@@ -126,16 +140,17 @@ public class Player : MonoBehaviour
             Vector2 vec = fireTrans.position - target.transform.position;
             float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
             fireTrans.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
-
+            //총알 생성
             PlayerBullet b = Instantiate(bullet, fireTrans);
             b.transform.SetParent(bulletParent);
-            
+
         }
     }
-    public void OnDrawGizmos()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(fireTrans.transform.position, 2f);
+        /*if(collision.CompareTag("Item"))
+        {
+            Destroy(collision.gameObject);
+        }*/
     }
-
 }
