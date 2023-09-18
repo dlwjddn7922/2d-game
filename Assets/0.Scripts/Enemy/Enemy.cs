@@ -79,9 +79,9 @@ public class Enemy : MonoBehaviour
         this.target = target;
         return this;
     }
-    public void Hit(int damage)
+    public void Hit()
     {
-        data.HP -= damage;
+        data.HP -= PlayerBullet.Instance.power;
         state = Define.EnemyState.Hit;
         sa.SetSprite(hitSprites, 0.1f);
         // 타격을 받았을때 프리징 되기 
@@ -99,7 +99,7 @@ public class Enemy : MonoBehaviour
             Item i = Instantiate(items[Random.Range(0, data.Level)], transform.position, Quaternion.identity);
             i.transform.SetParent(itemParent);
                 
-            Destroy(gameObject);            
+            Destroy(gameObject);
         }
     }
     string[] hitTags = { "bullet", "shield" };
@@ -119,9 +119,15 @@ public class Enemy : MonoBehaviour
         {
             if(collision.CompareTag(tag))
             {
-                Hit(5);
-                if(tag != "shield")
-                    Destroy(collision.gameObject);
+                Hit();
+                if(tag.Equals("bullet"))
+                {
+                    BulletPool.Instance.DisableBullet(collision.GetComponent<PlayerBullet>());
+                }
+                else
+                {
+
+                }               
             }
         }
     }

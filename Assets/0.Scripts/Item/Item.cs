@@ -31,6 +31,7 @@ public class Item : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             Destroy(gameObject);
+            
         }
     }
 }

@@ -9,9 +9,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private List<Sprite> standSprite;
     [SerializeField] private List<Sprite> moveSprite;
-    [SerializeField] private PlayerBullet bullet;
     [SerializeField] private Transform fireTrans;
-    [SerializeField] private Transform bulletParent;
 
     Define.PlayerData data = new Define.PlayerData();
     Define.PlayerState state = Define.PlayerState.Stand;
@@ -23,7 +21,6 @@ public class Player : MonoBehaviour
     private int shieldCnt = 0;
     private float shieldSpeed = 100f;
     private float fireTimer = float.MaxValue;
-    private float fireDelayTime = 1f;
     private float radius = 3f;
     public int Shield
     {
@@ -57,6 +54,7 @@ public class Player : MonoBehaviour
         sa.SetSprite(standSprite, 0.2f);
         //Shield = 0;
         data.Speed = 3f;
+        data.FireDelayTime = 0.5f;
         state = Define.PlayerState.Stand;
 
         data.Level = 1;
@@ -132,7 +130,7 @@ public class Player : MonoBehaviour
             }
         }
         fireTimer += Time.deltaTime;
-        if (target != null && fireTimer > 1f)
+        if (target != null && fireTimer > data.FireDelayTime)
         {
             fireTimer = 0f;
 
@@ -140,17 +138,12 @@ public class Player : MonoBehaviour
             Vector2 vec = fireTrans.position - target.transform.position;
             float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
             fireTrans.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
-            //ÃÑ¾Ë »ý¼º
-            PlayerBullet b = Instantiate(bullet, fireTrans);
-            b.transform.SetParent(bulletParent);
+            //ÃÑ¾Ë pool
+            PlayerBullet b =  BulletPool.Instance.EnableBullet(fireTrans);
+            //b.transform.localPosition = Vector3.zero;
+            //b.gameObject.SetActive(true);
+            b.transform.SetParent(BulletPool.Instance.transform);
 
         }
-    }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        /*if(collision.CompareTag("Item"))
-        {
-            Destroy(collision.gameObject);
-        }*/
     }
 }

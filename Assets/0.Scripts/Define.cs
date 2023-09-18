@@ -18,6 +18,7 @@ public static class Define
         private float curExp;
         public float maxExp;
         public int HP { get; set; }
+        public float FireDelayTime { get; set; }
         public float Speed { get; set; }
         public int Level
         {

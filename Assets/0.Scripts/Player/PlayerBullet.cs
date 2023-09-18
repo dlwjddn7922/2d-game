@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class PlayerBullet : Singleton<PlayerBullet>
 {
-    [HideInInspector] public float speed = 10f;
-    [HideInInspector] public float power;
+    [HideInInspector] public float speed;
+    [HideInInspector] public int power;
 
     void Start()
     {
-        Destroy(gameObject,2f);
+        power = 10;
+        speed = 5;
     }
     // Update is called once per frame
     void Update()
