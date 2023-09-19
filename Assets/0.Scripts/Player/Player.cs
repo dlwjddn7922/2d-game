@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private List<Sprite> standSprite;
     [SerializeField] private List<Sprite> moveSprite;
     [SerializeField] private Transform fireTrans;
-
-    Define.PlayerData data = new Define.PlayerData();
+    [HideInInspector]
+    public Define.PlayerData data = new Define.PlayerData();
     Define.PlayerState state = Define.PlayerState.Stand;
 
     //½¯µå ÀÛ¾÷
@@ -54,11 +54,13 @@ public class Player : MonoBehaviour
         sa.SetSprite(standSprite, 0.2f);
         //Shield = 0;
         data.Speed = 3f;
-        data.FireDelayTime = 0.5f;
+        data.FireDelayTime = 0.2f;
         state = Define.PlayerState.Stand;
 
         data.Level = 1;
         data.KillCount = 0;
+        data.maxExp = 100;
+        data.Exp = 0;
     }
 
     void Update()
@@ -140,10 +142,14 @@ public class Player : MonoBehaviour
             fireTrans.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
             //ÃÑ¾Ë pool
             PlayerBullet b =  BulletPool.Instance.EnableBullet(fireTrans);
-            //b.transform.localPosition = Vector3.zero;
+            b.transform.localPosition = Vector3.zero;
             //b.gameObject.SetActive(true);
             b.transform.SetParent(BulletPool.Instance.transform);
 
         }
+    }
+    public void SetExp(int value)
+    {
+        data.Exp += value;
     }
 }

@@ -389,7 +389,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.105
+  m_FillAmount: 0.144
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -511,6 +511,12 @@ MonoBehaviour:
   timerText: {fileID: 633146120}
   lvText: {fileID: 253644165}
   expImage: {fileID: 285193559}
+  loopAnimCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &568828333
 Transform:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private List<Sprite> deadSprites;
     [SerializeField] private Transform itemParent;
 
-    [SerializeField] private List<Item> items;
+    [SerializeField] private List<Exp> exps;
     public Transform target;
     Define.EnemyData data = new Define.EnemyData();
     Define.EnemyState state = Define.EnemyState.Move;
@@ -89,16 +89,19 @@ public class Enemy : MonoBehaviour
         //hp°¡ ¹Ù´ÚÀÏ °æ¿ì Á×´Â´Ù
         if(data.HP <= 0)
         {
-            target = null;
             GetComponent<CapsuleCollider2D>().enabled = false;
-            sa.SetSprite(deadSprites, 1f, DropItem);
+            sa.SetSprite(deadSprites, 1f,DropItem);
+            if(target.GetComponent<Player>())
+            {
+                target.GetComponent<Player>().data.KillCount++;
+            }
+            target = null;
 
         }
         void DropItem()
         {
-            Item i = Instantiate(items[Random.Range(0, data.Level)], transform.position, Quaternion.identity);
-            i.transform.SetParent(itemParent);
-                
+            Exp i = Instantiate(exps[Random.Range(0, data.Level)], transform.position, Quaternion.identity);
+            i.transform.SetParent(ItemSpawn.Instance.item);
             Destroy(gameObject);
         }
     }

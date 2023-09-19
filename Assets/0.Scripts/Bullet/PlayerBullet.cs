@@ -9,7 +9,7 @@ public class PlayerBullet : Singleton<PlayerBullet>
 
     void Start()
     {
-        power = 10;
+        power = 2;
         speed = 5;
     }
     // Update is called once per frame

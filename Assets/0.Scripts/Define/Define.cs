@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG;
 public static class Define
 {
     public enum PlayerState
@@ -25,7 +25,7 @@ public static class Define
             get { return level; }
             set
             {
-                level = value;
+                level = value;               
                 UI.Instance.SetLevel(level);
             }
         }
@@ -35,7 +35,7 @@ public static class Define
             set
             {
                 curExp = value;
-                UI.Instance.SetExp(curExp / maxExp);
+                UI.Instance.SetExp(curExp / maxExp);               
             }
         }
         public int KillCount
@@ -43,7 +43,7 @@ public static class Define
             get { return killCount; }
             set
             {
-                killCount = value;
+                killCount = value;              
                 UI.Instance.SetKillCount(killCount);
             }
         }

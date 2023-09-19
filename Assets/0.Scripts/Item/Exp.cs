@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public abstract class Exp : MonoBehaviour
 {
-    public int Exp { get; set; }
+    public int ExpValue { get; set; }
     [HideInInspector] public bool isAutoMove = false;
     Vector3 velocity;
     Player p;
@@ -30,7 +30,7 @@ public class Item : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-
+            collision.GetComponent<Player>().SetExp(ExpValue);
             Destroy(gameObject);
             
         }

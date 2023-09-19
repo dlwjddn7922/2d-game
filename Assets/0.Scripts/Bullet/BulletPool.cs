@@ -13,7 +13,7 @@ public class BulletPool : Singleton<BulletPool>
     {
         if(pool.Count == 0)
         {
-            PlayerBullet b = Instantiate(bullet);
+            PlayerBullet b = Instantiate(bullet,parent);
             //b.gameObject.SetActive(true);
             pool.Enqueue(b);
         }
@@ -21,7 +21,7 @@ public class BulletPool : Singleton<BulletPool>
         {
             PlayerBullet myBullet = pool.Peek();
             myBullet.transform.SetParent(parent);
-            myBullet.transform.localPosition = Vector3.zero;
+            //myBullet.transform.localPosition = Vector3.zero;
             myBullet.transform.localRotation = Quaternion.identity;
             myBullet.gameObject.SetActive(true);
         }

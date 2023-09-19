@@ -8,9 +8,9 @@ public class Mag : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            Item[] items = FindObjectsOfType<Item>();
+            Exp[] exps = FindObjectsOfType<Exp>();
 
-            foreach (var item in items)
+            foreach (var item in exps)
             {
                 item.SetTarget(collision.GetComponent<Player>());
                 item.isAutoMove = true;
