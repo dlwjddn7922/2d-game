@@ -47,7 +47,6 @@ public class Spawn : MonoBehaviour
 
             int rand = Random.Range(0, enemies.Length);
             Enemy e = Instantiate(enemies[rand],Return_RandomPosition(), Quaternion.identity);
-            e.SetTarget(target);
             e.transform.SetParent(parent);
             
         }

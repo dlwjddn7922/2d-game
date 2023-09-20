@@ -30,6 +30,9 @@ public class Enemy : MonoBehaviour
         data.AttackRange = 0.5f;
         data.HitDelayTime = 0.5f;
         sa.SetSprite(moveSprites, 0.2f);
+
+        target = FindObjectOfType<Player>().transform;
+
     }
 
     // Update is called once per frame
@@ -81,7 +84,7 @@ public class Enemy : MonoBehaviour
     }
     public void Hit()
     {
-        data.HP -= PlayerBullet.Instance.power;
+        data.HP -= Player.Instance.data.Power;
         state = Define.EnemyState.Hit;
         sa.SetSprite(hitSprites, 0.1f);
         // 타격을 받았을때 프리징 되기 
@@ -134,4 +137,5 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
 }

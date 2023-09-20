@@ -10,12 +10,8 @@ public class UI : Singleton<UI>
     [SerializeField] private TMP_Text killText;
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text lvText;
-    [SerializeField] private Image expImage;
+    [SerializeField] public Image expImage;
 
-    private float loopTimeValue = 1f;
-    private float targetValue = 0f;
-    private float currentValue = 0f;
-    public AnimationCurve loopAnimCurve;
 
     private float timer = 0;
 
@@ -31,6 +27,8 @@ public class UI : Singleton<UI>
         timer += Time.deltaTime;
         timerText.text = string.Format("{0:00:00}", timer);
 
+        if (expImage.fillAmount >= 1)
+            expImage.fillAmount = 0;
     }
 
     public void SetKillCount(int val)
@@ -49,7 +47,7 @@ public class UI : Singleton<UI>
     }
     public void SetExp(float val)
     {
-        expImage.DOFillAmount(val, 0.2f);   
+        expImage.DOFillAmount(val, 0.2f);      
     }
 
 }

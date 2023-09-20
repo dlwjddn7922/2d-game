@@ -20,6 +20,7 @@ public static class Define
         public int HP { get; set; }
         public float FireDelayTime { get; set; }
         public float Speed { get; set; }
+        public int Power { get; set; }
         public int Level
         {
             get { return level; }
@@ -35,7 +36,13 @@ public static class Define
             set
             {
                 curExp = value;
-                UI.Instance.SetExp(curExp / maxExp);               
+                UI.Instance.SetExp(curExp / maxExp);
+                if (curExp >= maxExp)
+                {
+                    Level++;
+                    curExp = 0;
+                    maxExp += 30;
+                }
             }
         }
         public int KillCount

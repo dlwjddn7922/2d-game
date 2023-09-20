@@ -7,6 +7,7 @@ public class Exp10 : Exp
     // Start is called before the first frame update
     void Start()
     {
-        ExpValue = Random.Range(1, 10);
+        //ExpValue = Random.Range(10, 10);
+        ExpValue = 10;
     }
 }

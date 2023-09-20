@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Singleton<Player>
 {
     private SpriteAnimation sa;
     private SpriteRenderer sr;
@@ -57,9 +57,10 @@ public class Player : MonoBehaviour
         data.FireDelayTime = 0.2f;
         state = Define.PlayerState.Stand;
 
+        data.Power = 10;
         data.Level = 1;
         data.KillCount = 0;
-        data.maxExp = 100;
+        data.maxExp = 50;
         data.Exp = 0;
     }
 
@@ -107,6 +108,7 @@ public class Player : MonoBehaviour
         // 가장 가까운 적을 찾아 발사
         FireBullet();
 
+
     }
     public void OnDrawGizmos()
     {
@@ -152,4 +154,5 @@ public class Player : MonoBehaviour
     {
         data.Exp += value;
     }
+
 }
