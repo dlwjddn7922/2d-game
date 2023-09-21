@@ -62,10 +62,15 @@ public class Player : Singleton<Player>
         data.KillCount = 0;
         data.maxExp = 50;
         data.Exp = 0;
+        data.maxHp = 100;
+        data.HP = 100;
     }
 
     void Update()
     {
+        if (Define.state != Define.GameState.Play)
+            return;
+
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 

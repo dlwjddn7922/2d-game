@@ -24,6 +24,9 @@ public class Spawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Define.state != Define.GameState.Play)
+            return;
+
         if (nextSpawnTimer == 0)
             return;
 

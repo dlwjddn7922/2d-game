@@ -15,6 +15,9 @@ public class PlayerBullet : Singleton<PlayerBullet>
     // Update is called once per frame
     void Update()
     {
+        if (Define.state != Define.GameState.Play)
+            return;
+
         transform.Translate(Vector3.up * Time.deltaTime * speed);
     }
 }

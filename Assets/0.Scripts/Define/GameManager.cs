@@ -10,5 +10,6 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        Define.state = Define.GameState.Play;
     }
 }

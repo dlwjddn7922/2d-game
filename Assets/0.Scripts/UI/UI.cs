@@ -11,6 +11,7 @@ public class UI : Singleton<UI>
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text lvText;
     [SerializeField] public Image expImage;
+    [SerializeField] public GameObject lvPopup;
 
 
     private float timer = 0;
@@ -24,6 +25,9 @@ public class UI : Singleton<UI>
     // Update is called once per frame
     void Update()
     {
+        if (Define.state != Define.GameState.Play)
+            return;
+
         timer += Time.deltaTime;
         timerText.text = string.Format("{0:00:00}", timer);
 
@@ -49,5 +53,6 @@ public class UI : Singleton<UI>
     {
         expImage.DOFillAmount(val, 0.2f);      
     }
+
 
 }

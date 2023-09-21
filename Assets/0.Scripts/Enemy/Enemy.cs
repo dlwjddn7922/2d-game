@@ -38,6 +38,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Define.state != Define.GameState.Play)
+            return;
+
         if (target == null)
             return;
 

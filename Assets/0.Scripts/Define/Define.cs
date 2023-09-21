@@ -4,6 +4,13 @@ using UnityEngine;
 using DG;
 public static class Define
 {
+    public static GameState state = GameState.Stop;
+    public enum GameState
+    {
+        Play,
+        Pause,
+        Stop
+    }
     public enum PlayerState
     {
         Stand,
@@ -16,8 +23,19 @@ public static class Define
         private int level;
         private int killCount;
         private float curExp;
+        private int hp;
         public float maxExp;
-        public int HP { get; set; }
+        public int maxHp;
+        public int HP
+        {
+            get { return hp; }
+            set
+            {
+                hp = value;
+                //PlayerHpbar.Instance.SetHp(hp / maxHp);
+
+            }
+        }
         public float FireDelayTime { get; set; }
         public float Speed { get; set; }
         public int Power { get; set; }
@@ -28,6 +46,7 @@ public static class Define
             {
                 level = value;               
                 UI.Instance.SetLevel(level);
+                Define.state = Define.GameState.Stop;
             }
         }
         public float Exp
@@ -42,6 +61,8 @@ public static class Define
                     Level++;
                     curExp = 0;
                     maxExp += 30;
+                    UI.Instance.lvPopup.SetActive(true);
+                    //Time.timeScale = 0;
                 }
             }
         }

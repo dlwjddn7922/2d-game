@@ -17,7 +17,10 @@ public abstract class Exp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isAutoMove)
+        if (Define.state != Define.GameState.Play)
+            return;
+
+        if (isAutoMove)
         {
             transform.position = Vector3.SmoothDamp(transform.position, p.transform.position, ref velocity, 0.2f);
         }

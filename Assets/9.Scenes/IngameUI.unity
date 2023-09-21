@@ -437,8 +437,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 20, y: -20}
-  m_SizeDelta: {x: 200, y: 60}
+  m_AnchoredPosition: {x: 62.094177, y: -20}
+  m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &294600380
 MonoBehaviour:
@@ -646,6 +646,7 @@ MonoBehaviour:
   timerText: {fileID: 633146120}
   lvText: {fileID: 253644165}
   expImage: {fileID: 285193559}
+  lvPopup: {fileID: 2081750154}
 --- !u!4 &568828333
 Transform:
   m_ObjectHideFlags: 0
@@ -960,7 +961,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 654089832}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2081750154}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2081750158}
+        m_TargetAssemblyTypeName: LevelupPopup, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &654089832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,7 +1036,7 @@ GameObject:
   - component: {fileID: 684325538}
   - component: {fileID: 684325537}
   m_Layer: 5
-  m_Name: Text (TMP)define
+  m_Name: Text (TMP):desc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1281,7 +1306,7 @@ GameObject:
   - component: {fileID: 931479637}
   - component: {fileID: 931479636}
   m_Layer: 5
-  m_Name: Text (TMP)define
+  m_Name: Text (TMP):desc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1760,7 +1785,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1079736003}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2081750154}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2081750158}
+        m_TargetAssemblyTypeName: LevelupPopup, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1079736003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1834,8 +1883,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 20, y: -20}
-  m_SizeDelta: {x: 200, y: 60}
+  m_AnchoredPosition: {x: 66.850586, y: -20}
+  m_SizeDelta: {x: 295, y: 59.0487}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1081698232
 MonoBehaviour:
@@ -2172,7 +2221,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1191562748}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2081750154}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2081750158}
+        m_TargetAssemblyTypeName: LevelupPopup, Assembly-CSharp
+        m_MethodName: OnSelect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1191562748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,7 +2296,7 @@ GameObject:
   - component: {fileID: 1279940219}
   - component: {fileID: 1279940218}
   m_Layer: 5
-  m_Name: Text (TMP)define
+  m_Name: Text (TMP):desc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2404,7 +2477,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lv.2
+  m_text: Lv.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b31cdd0824492a74aa607b9c538c4462, type: 2}
   m_sharedMaterial: {fileID: 4185114828617532660, guid: b31cdd0824492a74aa607b9c538c4462, type: 2}
@@ -2736,7 +2809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lv.2
+  m_text: Lv.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b31cdd0824492a74aa607b9c538c4462, type: 2}
   m_sharedMaterial: {fileID: 4185114828617532660, guid: b31cdd0824492a74aa607b9c538c4462, type: 2}
@@ -2924,8 +2997,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 20, y: -20}
-  m_SizeDelta: {x: 200, y: 60}
+  m_AnchoredPosition: {x: 67.32623, y: -20}
+  m_SizeDelta: {x: 300, y: 59.0487}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1692759201
 MonoBehaviour:
@@ -3736,3 +3809,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bg: {fileID: 1848260906}
+  itemDatas:
+  - {fileID: 11400000, guid: 60205882352ba0c44b8a5a9976713164, type: 2}
+  - {fileID: 11400000, guid: a5cd7df20b9a50a4bbfd54a52b5f939f, type: 2}
+  - {fileID: 11400000, guid: bbf5f68d69a32214ab9630b53e6c5540, type: 2}
+  - {fileID: 11400000, guid: d5aefc0351b31b846ab4e3de71728e1a, type: 2}
+  - {fileID: 11400000, guid: 618f58f6851dbe44c944abbb571d1bc6, type: 2}
+  - {fileID: 11400000, guid: 6e6ff63a00d265140a84d2eb65ae3927, type: 2}
+  - {fileID: 11400000, guid: 14ae76484eb0b7a42aad976e2a1aef09, type: 2}
+  - {fileID: 11400000, guid: cad1742f89b715348a35590c611d1dd6, type: 2}
+  - {fileID: 11400000, guid: 2b2fb2366d4291445b7161d5dffc5525, type: 2}
+  - {fileID: 11400000, guid: 60bd6b584d539314eb39304971f6b0af, type: 2}
+  levelUPUIs:
+  - icon: {fileID: 1099336138}
+    lvText: {fileID: 1517295922}
+    weaponText: {fileID: 1692759201}
+    descText: {fileID: 684325537}
+  - icon: {fileID: 1589379835}
+    lvText: {fileID: 935295988}
+    weaponText: {fileID: 294600380}
+    descText: {fileID: 1279940218}
+  - icon: {fileID: 1512014138}
+    lvText: {fileID: 1381099828}
+    weaponText: {fileID: 1081698232}
+    descText: {fileID: 931479636}
