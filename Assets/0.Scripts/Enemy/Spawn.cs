@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     [SerializeField] private Enemy[] enemies;
+    [SerializeField] private GameObject[] gameObjects;
     [SerializeField] Transform parent;
     //public Transform rangeObject;
     private BoxCollider2D rangeCollider;
@@ -49,9 +50,9 @@ public class Spawn : MonoBehaviour
             nextSpawnTimer = Random.Range(1, 3);
 
             int rand = Random.Range(0, enemies.Length);
-            Enemy e = Instantiate(enemies[rand],Return_RandomPosition(), Quaternion.identity);
+            Enemy e = Instantiate(enemies[rand], Return_RandomPosition(), Quaternion.identity);
             e.transform.SetParent(parent);
-            
+
         }
     }
     // ·£´ý ½ºÆù 

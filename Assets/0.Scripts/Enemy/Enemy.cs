@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private List<Sprite> moveSprites;
     [SerializeField] private List<Sprite> hitSprites;
@@ -11,28 +11,23 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private List<Exp> exps;
     public Transform target;
-    Define.EnemyData data = new Define.EnemyData();
-    Define.EnemyState state = Define.EnemyState.Move;
+    protected Define.EnemyState state = Define.EnemyState.Move;
     private SpriteAnimation sa;
     private SpriteRenderer sr;
     private Coroutine hitCor;
+    protected Define.EnemyData data = new Define.EnemyData();
 
     private float hitTimer = 0;
 
     // Start is called before the first frame update
-    void Start()
-    {       
+
+    public void Init()
+    {
         sa = GetComponent<SpriteAnimation>();
         sr = GetComponent<SpriteRenderer>();
-        data.Level = 1;
-        data.HP = 10;
-        data.Speed = 1.5f;
-        data.AttackRange = 0.5f;
-        data.HitDelayTime = 0.5f;
         sa.SetSprite(moveSprites, 0.2f);
 
         target = FindObjectOfType<Player>().transform;
-
     }
 
     // Update is called once per frame

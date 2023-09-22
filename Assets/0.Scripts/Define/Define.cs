@@ -24,8 +24,17 @@ public static class Define
         private int killCount;
         private float curExp;
         private int hp;
+        private float radius;
         public float maxExp;
         public int maxHp;
+        public float Radius
+        {
+            get { return radius; }
+            set
+            {
+                radius = value;
+            }
+        }
         public int HP
         {
             get { return hp; }

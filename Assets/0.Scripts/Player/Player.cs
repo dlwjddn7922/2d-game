@@ -21,7 +21,7 @@ public class Player : Singleton<Player>
     private int shieldCnt = 0;
     private float shieldSpeed = 100f;
     private float fireTimer = float.MaxValue;
-    private float radius = 3f;
+    //private float radius = 3f;
     public int Shield
     {
         set
@@ -64,6 +64,7 @@ public class Player : Singleton<Player>
         data.Exp = 0;
         data.maxHp = 100;
         data.HP = 100;
+        data.Radius = 3f;
     }
 
     void Update()
@@ -118,11 +119,11 @@ public class Player : Singleton<Player>
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(fireTrans.transform.position, 3f);
+        Gizmos.DrawWireSphere(fireTrans.transform.position, data.Radius);
     }
     public void FireBullet()
     {
-        Collider2D[] findMonsters = Physics2D.OverlapCircleAll(fireTrans.position, radius, LayerMask.GetMask("Monster"));
+        Collider2D[] findMonsters = Physics2D.OverlapCircleAll(fireTrans.position, data.Radius, LayerMask.GetMask("Monster"));
         float distance = float.MaxValue;
         Transform target = null;
         if (findMonsters.Length != 0)
