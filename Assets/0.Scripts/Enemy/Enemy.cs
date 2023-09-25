@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public abstract class Enemy : MonoBehaviour
         sa.SetSprite(moveSprites, 0.2f);
 
         target = FindObjectOfType<Player>().transform;
+
+        exps = Resources.LoadAll<Exp>("Prefabs/Exp").ToList();
+
+        Resources.Load<Exp>("Prefabs/Exp/Exp0}");
     }
 
     // Update is called once per frame

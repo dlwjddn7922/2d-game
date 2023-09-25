@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
+    //public PoolManager pool;
     [SerializeField] private Enemy[] enemies;
-    [SerializeField] private GameObject[] gameObjects;
+    //[SerializeField] private GameObject[] gameObjects;
     [SerializeField] Transform parent;
     //public Transform rangeObject;
     private BoxCollider2D rangeCollider;
@@ -20,6 +21,7 @@ public class Spawn : MonoBehaviour
         rangeCollider = GetComponent<BoxCollider2D>();
         nextSpawnTimer = Random.Range(1, 3);
         target = FindObjectOfType<Player>().transform;
+        //GameManager.instance.pool.Get(1);
     }
 
     // Update is called once per frame
@@ -48,10 +50,12 @@ public class Spawn : MonoBehaviour
         {
             spawnTimer = 0;
             nextSpawnTimer = Random.Range(1, 3);
-
             int rand = Random.Range(0, enemies.Length);
-            Enemy e = Instantiate(enemies[rand], Return_RandomPosition(), Quaternion.identity);
-            e.transform.SetParent(parent);
+            //Enemy e = Instantiate(enemies[rand], Return_RandomPosition(), Quaternion.identity);
+            GameObject enemy = GameManager.Instance.pool.Get(Random.Range(0, 4));
+            enemy.transform.position = Return_RandomPosition();
+            enemy.transform.localRotation = Quaternion.identity;
+
 
         }
     }
