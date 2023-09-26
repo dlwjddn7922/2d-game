@@ -5,8 +5,8 @@ using UnityEngine;
 public class PoolManager : Singleton<PoolManager>
 {
     public GameObject[] prefabs;
-
     List<GameObject>[] pools;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +16,7 @@ public class PoolManager : Singleton<PoolManager>
         {
             pools[index] = new List<GameObject>();
         }
+        Debug.Log(pools.Length);
     }
 
     public GameObject Get(int index)
@@ -32,7 +33,7 @@ public class PoolManager : Singleton<PoolManager>
             }
         }
 
-        if(!select)
+        if (!select)
         {
             select = Instantiate(prefabs[index], transform);
             pools[index].Add(select);

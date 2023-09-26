@@ -7,6 +7,7 @@ public class Player : Singleton<Player>
     private SpriteAnimation sa;
     private SpriteRenderer sr;
 
+    [SerializeField] public PoolManager pool;
     [SerializeField] private List<Sprite> standSprite;
     [SerializeField] private List<Sprite> moveSprite;
     [SerializeField] private Transform fireTrans;
@@ -149,9 +150,8 @@ public class Player : Singleton<Player>
             float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
             fireTrans.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
             //ÃÑ¾Ë pool
-            PlayerBullet b =  BulletPool.Instance.EnableBullet(fireTrans);
+            PlayerBullet b = BulletPool.Instance.EnableBullet(fireTrans);
             b.transform.localPosition = Vector3.zero;
-            //b.gameObject.SetActive(true);
             b.transform.SetParent(BulletPool.Instance.transform);
 
         }

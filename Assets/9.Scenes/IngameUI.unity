@@ -2584,6 +2584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterIndex: -1
+  pool: {fileID: 0}
 --- !u!4 &1476030778
 Transform:
   m_ObjectHideFlags: 0

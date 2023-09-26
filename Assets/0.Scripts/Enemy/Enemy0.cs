@@ -13,6 +13,6 @@ public class Enemy0 : Enemy
         data.AttackRange = 0.5f;
         data.HitDelayTime = 0.5f;
 
-        base.Init();
+        Init();
     }
 }

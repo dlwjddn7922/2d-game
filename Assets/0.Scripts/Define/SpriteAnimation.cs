@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class SpriteAnimation : MonoBehaviour
 {
     private SpriteRenderer sr;
-
     private List<Sprite> sprites = new List<Sprite>();
     private float delay;
     private bool isLoop;

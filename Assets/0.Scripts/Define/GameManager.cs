@@ -7,7 +7,7 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector]
     public int characterIndex = -1;
     public static GameManager instance;
-    public PoolManager pool;
+    //public PoolManager pool;
     // Start is called before the first frame update
     void Start()
     {

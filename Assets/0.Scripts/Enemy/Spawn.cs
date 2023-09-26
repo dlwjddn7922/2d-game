@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour
+public class Spawn : Singleton<Spawn>
 {
-    //public PoolManager pool;
-    [SerializeField] private Enemy[] enemies;
+    [SerializeField] public PoolManager pool;
+    //[SerializeField] private Enemy[] enemies;
+
     //[SerializeField] private GameObject[] gameObjects;
-    [SerializeField] Transform parent;
     //public Transform rangeObject;
     private BoxCollider2D rangeCollider;
 
@@ -50,17 +50,15 @@ public class Spawn : MonoBehaviour
         {
             spawnTimer = 0;
             nextSpawnTimer = Random.Range(1, 3);
-            int rand = Random.Range(0, enemies.Length);
+            //int rand = Random.Range(0, enemies.Length);
             //Enemy e = Instantiate(enemies[rand], Return_RandomPosition(), Quaternion.identity);
-            GameObject enemy = GameManager.Instance.pool.Get(Random.Range(0, 4));
+            GameObject enemy = pool.Get(Random.Range(0, 5));
             enemy.transform.position = Return_RandomPosition();
-            enemy.transform.localRotation = Quaternion.identity;
-
-
+            enemy.transform.localRotation = Quaternion.identity;   
         }
     }
     // 랜덤 스폰 
-    Vector3 Return_RandomPosition()
+    public Vector3 Return_RandomPosition()
     {
         Vector3 originPosition = rangeCollider.transform.position;
         // 콜라이더의 사이즈를 가져오는 bound.size 사용

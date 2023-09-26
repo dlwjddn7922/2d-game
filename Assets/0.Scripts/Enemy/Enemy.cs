@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : Singleton<Enemy>
 {
-    [SerializeField] private List<Sprite> moveSprites;
+    [SerializeField] public List<Sprite> moveSprites;
     [SerializeField] private List<Sprite> hitSprites;
     [SerializeField] private List<Sprite> deadSprites;
     [SerializeField] private Transform itemParent;
+
+    [HideInInspector] public int spawnIndex = -1;
 
     [SerializeField] private List<Exp> exps;
     public Transform target;
@@ -30,9 +32,9 @@ public abstract class Enemy : MonoBehaviour
 
         target = FindObjectOfType<Player>().transform;
 
-        exps = Resources.LoadAll<Exp>("Prefabs/Exp").ToList();
+        /*exps = Resources.LoadAll<Exp>("Prefabs/Exp").ToList();
 
-        Resources.Load<Exp>("Prefabs/Exp/Exp0}");
+        Resources.Load<Exp>("Prefabs/Exp/Exp0}");*/
     }
 
     // Update is called once per frame
@@ -96,8 +98,8 @@ public abstract class Enemy : MonoBehaviour
         if(data.HP <= 0)
         {
             GetComponent<CapsuleCollider2D>().enabled = false;
-            sa.SetSprite(deadSprites, 1f,DropItem);
-            if(target.GetComponent<Player>())
+            sa.SetSprite(deadSprites, 0.5f,DropItem);
+            if (target.GetComponent<Player>())
             {
                 target.GetComponent<Player>().data.KillCount++;
             }
@@ -108,7 +110,9 @@ public abstract class Enemy : MonoBehaviour
         {
             Exp i = Instantiate(exps[Random.Range(0, data.Level)], transform.position, Quaternion.identity);
             i.transform.SetParent(ItemSpawn.Instance.item);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
+            //EnemyPool.Instance.DisableEnemy(spawnIndex, this);
         }
     }
     string[] hitTags = { "bullet", "shield" };
@@ -140,5 +144,14 @@ public abstract class Enemy : MonoBehaviour
             }
         }
     }
+    private void OnEnable()
+    {
+        GetComponent<CapsuleCollider2D>().enabled = true;
+        target = FindObjectOfType<Player>().transform;
 
+    }
+    private void OnDisable()
+    {
+        sa.SetSprite(moveSprites, 0.2f);
+    }
 }
