@@ -14,7 +14,7 @@ public class UI : Singleton<UI>
     [SerializeField] public GameObject lvPopup;
 
 
-    private float timer = 0;
+    public float timer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -54,5 +54,9 @@ public class UI : Singleton<UI>
         expImage.DOFillAmount(val, 0.2f);      
     }
 
+    public void Clear()
+    {
+
+    }
 
 }

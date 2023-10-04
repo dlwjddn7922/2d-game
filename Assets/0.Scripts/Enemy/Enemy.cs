@@ -5,6 +5,9 @@ using System.Linq;
 
 public abstract class Enemy : Singleton<Enemy>
 {
+    public float speed;
+    public float health;
+    public float maxHealth;
     [SerializeField] public List<Sprite> moveSprites;
     [SerializeField] private List<Sprite> hitSprites;
     [SerializeField] private List<Sprite> deadSprites;

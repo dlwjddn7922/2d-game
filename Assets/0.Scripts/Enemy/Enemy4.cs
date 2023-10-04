@@ -12,6 +12,7 @@ public class Enemy4 : Enemy
         data.Speed = 2f;
         data.AttackRange = 0.5f;
         data.HitDelayTime = 0.5f;
+        data.SpawnTime = 2f;
 
         Init();
     }

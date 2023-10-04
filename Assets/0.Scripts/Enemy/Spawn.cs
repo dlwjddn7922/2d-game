@@ -6,6 +6,7 @@ public class Spawn : Singleton<Spawn>
 {
     [SerializeField] public PoolManager pool;
     //[SerializeField] private Enemy[] enemies;
+    //public SpawnData[] spawnDatas;
 
     //[SerializeField] private GameObject[] gameObjects;
     //public Transform rangeObject;
@@ -13,6 +14,7 @@ public class Spawn : Singleton<Spawn>
 
     private float spawnTimer = 0;
     private float nextSpawnTimer = 0;
+    int level;
 
     private Transform target;
     // Start is called before the first frame update
@@ -20,7 +22,7 @@ public class Spawn : Singleton<Spawn>
     {
         rangeCollider = GetComponent<BoxCollider2D>();
         nextSpawnTimer = Random.Range(1, 3);
-        target = FindObjectOfType<Player>().transform;
+        target = FindObjectOfType<Player>()?.transform;
         //GameManager.instance.pool.Get(1);
     }
 
@@ -42,19 +44,59 @@ public class Spawn : Singleton<Spawn>
 
         if (target == null)
         {
-            target = FindObjectOfType<Player>().transform;
+            target = FindObjectOfType<Player>()?.transform;
             return;
         }
         spawnTimer += Time.deltaTime;
+        level = Mathf.FloorToInt(GameManager.Instance.gameTime / 10f);
         if(spawnTimer > nextSpawnTimer)
         {
             spawnTimer = 0;
             nextSpawnTimer = Random.Range(1, 3);
             //int rand = Random.Range(0, enemies.Length);
             //Enemy e = Instantiate(enemies[rand], Return_RandomPosition(), Quaternion.identity);
-            GameObject enemy = pool.Get(Random.Range(0, 5));
-            enemy.transform.position = Return_RandomPosition();
-            enemy.transform.localRotation = Quaternion.identity;   
+            if(UI.Instance.timer > 0 && UI.Instance.timer < 30)
+            {
+                GameObject enemy = pool.Get(0);
+                enemy.transform.position = Return_RandomPosition();
+                enemy.transform.localRotation = Quaternion.identity;
+                spawnTimer = 0;
+            }
+            if (UI.Instance.timer > 30 && UI.Instance.timer < 60f)
+            {
+                int rand = Random.Range(0, 2);
+                GameObject enemy = pool.Get(rand);
+                enemy.transform.position = Return_RandomPosition();
+                enemy.transform.localRotation = Quaternion.identity;
+                spawnTimer = 0;
+            }
+            if (UI.Instance.timer > 60 && UI.Instance.timer < 120)
+            {
+                int rand = Random.Range(1, 3);
+                GameObject enemy = pool.Get(rand);
+                enemy.transform.position = Return_RandomPosition();
+                enemy.transform.localRotation = Quaternion.identity;
+                spawnTimer = 0;
+            }
+            if (UI.Instance.timer > 120 && UI.Instance.timer < 240)
+            {
+                int rand = Random.Range(2, 4);
+                GameObject enemy = pool.Get(rand);
+                enemy.transform.position = Return_RandomPosition();
+                enemy.transform.localRotation = Quaternion.identity;
+                spawnTimer = 0;
+            }
+            if (UI.Instance.timer > 240 && UI.Instance.timer < 360)
+            {
+                int rand = Random.Range(3,5);
+                GameObject enemy = pool.Get(rand);
+                enemy.transform.position = Return_RandomPosition();
+                enemy.transform.localRotation = Quaternion.identity;
+                spawnTimer = 0;
+            }
+            //GameObject enemy = pool.Get(0);
+            //enemy.transform.position = Return_RandomPosition();
+            //enemy.transform.localRotation = Quaternion.identity;   
         }
     }
     // ·£´ý ½ºÆù 
@@ -73,3 +115,12 @@ public class Spawn : Singleton<Spawn>
         return respawnPosition;
     }
 }
+
+/*[System.Serializable]
+public class SpawnData
+{
+    public int spriteType;
+    public float spawnTime;
+    public int health;
+    public float speed;
+}*/

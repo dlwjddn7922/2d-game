@@ -8,8 +8,8 @@ public class Player : Singleton<Player>
     private SpriteRenderer sr;
 
     [SerializeField] public PoolManager pool;
-    [SerializeField] private List<Sprite> standSprite;
-    [SerializeField] private List<Sprite> moveSprite;
+    [HideInInspector] public List<Sprite> standSprite;
+    [HideInInspector] public List<Sprite> moveSprite;
     [SerializeField] private Transform fireTrans;
     [HideInInspector]
     public Define.PlayerData data = new Define.PlayerData();
@@ -61,11 +61,23 @@ public class Player : Singleton<Player>
         data.Power = 10;
         data.Level = 1;
         data.KillCount = 0;
-        data.maxExp = 50;
+        data.maxExp = 100;
         data.Exp = 0;
         data.maxHp = 100;
         data.HP = 100;
         data.Radius = 3f;
+
+        switch(GameManager.Instance.characterIndex)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }
 
     void Update()

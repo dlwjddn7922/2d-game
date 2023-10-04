@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 83
+  controlID: 49
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 73
+  controlID: 18
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 18
+  controlID: 29
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -705,9 +705,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.9351484, y: -0.3820071, z: -8.387668}
+    m_Target: {x: -0.2880194, y: -1.0678477, z: -8.473168}
     speed: 2
-    m_Value: {x: 0.8474657, y: -0.42873275, z: -8.3902}
+    m_Value: {x: -0.2880194, y: -1.0678477, z: -8.473168}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -758,9 +758,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.374346
+    m_Target: 10.364788
     speed: 2
-    m_Value: 5.6275873
+    m_Value: 10.364788
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -816,7 +816,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -14730
+  m_LastSelectedObjectID: -65944
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -913,9 +913,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 51f33be914da5ea4485b75dd1fde7add, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 4c60258688a9555408cd1ef598ba7ea7, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -2174326710419595210, guid: 51f33be914da5ea4485b75dd1fde7add, type: 2}
+  - m_Target: {fileID: 8054503617963663236, guid: 4c60258688a9555408cd1ef598ba7ea7, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -960,9 +960,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: be8c0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 76c6ffff88c7ffffd2c7ffff1ec8ffff72c8ffff9ac9ffff669000007c900000a2900000c0900000ca900000d2910000
+      m_ExpandedIDs: 640cffff7c0cffffae73ffff2c7affffa27affffec7affff76a9ffff78a9ffff08adffffe4afffffe6afffff10baffffa8baffffd2beffffe8bfffff76c7ffffd2c7ffff9ac9fffff4ffffff2aa0000032a0000040a000005ca0000074a0000090a000009ea00000aaa000005ca500009ea5000048d900008ad900008eda0000aeda0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1057,22 +1057,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Undead Survivor/Sprites
+    - Assets/1.Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Undead Survivor/Sprites
+  - Assets/1.Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\user\Desktop\2d-game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 149c0000
-    m_LastClickedID: 39956
-    m_ExpandedIDs: 00000000c88d0000ca8d0000da8d000000ca9a3bffffff7f
+    m_SelectedIDs: cc8d0000
+    m_LastClickedID: 36300
+    m_ExpandedIDs: 00000000c88d0000ca8d0000d68d0000da8d00007e9c000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1128,7 +1128,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: b88500002a8a0000108a0000288b0000728b0000b8860000bc8b00009a8b0000388b00000c8e000024890000b48b000000000000d48b0000b489000002870000
+    m_ExpandedInstanceIDs: b88500002a8a0000108a0000288b0000728b0000b8860000bc8b00009a8b0000388b00000c8e000024890000b48b000000000000d48b0000b489000002870000d88c0000c68c00008c8c0000088d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1152,7 +1152,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 1932}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 194

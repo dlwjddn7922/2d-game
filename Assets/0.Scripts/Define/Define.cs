@@ -53,9 +53,12 @@ public static class Define
             get { return level; }
             set
             {
-                level = value;               
+                if (level > 0)
+                {
+                    Define.state = Define.GameState.Stop;
+                }
+                level = value;
                 UI.Instance.SetLevel(level);
-                Define.state = Define.GameState.Stop;
             }
         }
         public float Exp
@@ -69,7 +72,7 @@ public static class Define
                 {
                     Level++;
                     curExp = 0;
-                    maxExp += 30;
+                    maxExp += 50;
                     UI.Instance.lvPopup.SetActive(true);
                     //Time.timeScale = 0;
                 }
@@ -98,5 +101,6 @@ public static class Define
         public float Speed { get; set; }
         public float AttackRange { get; set; }
         public float HitDelayTime { get; set; }
+        public float SpawnTime { get; set; }
     }
 }
