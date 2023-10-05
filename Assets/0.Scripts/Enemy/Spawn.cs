@@ -52,11 +52,12 @@ public class Spawn : Singleton<Spawn>
         if(spawnTimer > nextSpawnTimer)
         {
             spawnTimer = 0;
-            nextSpawnTimer = Random.Range(1, 3);
+            
             //int rand = Random.Range(0, enemies.Length);
             //Enemy e = Instantiate(enemies[rand], Return_RandomPosition(), Quaternion.identity);
             if(UI.Instance.timer > 0 && UI.Instance.timer < 30)
             {
+                nextSpawnTimer = Random.Range(1, 3);
                 GameObject enemy = pool.Get(0);
                 enemy.transform.position = Return_RandomPosition();
                 enemy.transform.localRotation = Quaternion.identity;
@@ -64,6 +65,7 @@ public class Spawn : Singleton<Spawn>
             }
             if (UI.Instance.timer > 30 && UI.Instance.timer < 60f)
             {
+                nextSpawnTimer = Random.Range(1,2);
                 int rand = Random.Range(0, 2);
                 GameObject enemy = pool.Get(rand);
                 enemy.transform.position = Return_RandomPosition();
@@ -72,6 +74,7 @@ public class Spawn : Singleton<Spawn>
             }
             if (UI.Instance.timer > 60 && UI.Instance.timer < 120)
             {
+                nextSpawnTimer = Random.Range(1, 2);
                 int rand = Random.Range(1, 3);
                 GameObject enemy = pool.Get(rand);
                 enemy.transform.position = Return_RandomPosition();
@@ -80,6 +83,7 @@ public class Spawn : Singleton<Spawn>
             }
             if (UI.Instance.timer > 120 && UI.Instance.timer < 240)
             {
+                nextSpawnTimer = Random.Range(0.5f,1.5f);
                 int rand = Random.Range(2, 4);
                 GameObject enemy = pool.Get(rand);
                 enemy.transform.position = Return_RandomPosition();
@@ -88,6 +92,7 @@ public class Spawn : Singleton<Spawn>
             }
             if (UI.Instance.timer > 240 && UI.Instance.timer < 360)
             {
+                nextSpawnTimer = Random.Range(0, 1.5f);
                 int rand = Random.Range(3,5);
                 GameObject enemy = pool.Get(rand);
                 enemy.transform.position = Return_RandomPosition();

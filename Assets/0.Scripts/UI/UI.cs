@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class UI : Singleton<UI>
 {
@@ -12,7 +13,9 @@ public class UI : Singleton<UI>
     [SerializeField] private TMP_Text lvText;
     [SerializeField] public Image expImage;
     [SerializeField] public GameObject lvPopup;
-
+    [SerializeField] public GameObject gameoverPopup;
+    [SerializeField] private TMP_Text gameoverKilltxt;
+    [SerializeField] private TMP_Text gameovertimertxt;
 
     public float timer = 0;
 
@@ -30,6 +33,7 @@ public class UI : Singleton<UI>
 
         timer += Time.deltaTime;
         timerText.text = string.Format("{0:00:00}", timer);
+        gameovertimertxt.text = string.Format("{0:00:00}", timer);
 
         if (expImage.fillAmount >= 1)
             expImage.fillAmount = 0;
@@ -38,6 +42,7 @@ public class UI : Singleton<UI>
     public void SetKillCount(int val)
     {
         killText.text = val.ToString();
+        gameoverKilltxt.text = val.ToString();
         if (val > 0)
         {
             killText.transform.DOScale(1.5f, 0.2f)
@@ -54,9 +59,15 @@ public class UI : Singleton<UI>
         expImage.DOFillAmount(val, 0.2f);      
     }
 
-    public void Clear()
+    public void OnExit()
     {
+        Application.Quit();
+    }
 
+    public void OnResume()
+    {
+        SceneManager.LoadScene("Main");
+        Time.timeScale = 1;
     }
 
 }

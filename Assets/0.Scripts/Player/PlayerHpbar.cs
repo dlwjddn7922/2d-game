@@ -20,10 +20,10 @@ public class PlayerHpbar : Singleton<PlayerHpbar>
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.position;
+        //transform.position = player.position;
     }
 
-    public void SetHp(int val)
+    public void SetHp(float val)
     {
         hpBar.fillAmount = val;
     }

@@ -10,6 +10,7 @@ public class Player : Singleton<Player>
     [SerializeField] public PoolManager pool;
     [HideInInspector] public List<Sprite> standSprite;
     [HideInInspector] public List<Sprite> moveSprite;
+    [HideInInspector] public List<Sprite> deadSprite;
     [SerializeField] private Transform fireTrans;
     [HideInInspector]
     public Define.PlayerData data = new Define.PlayerData();
@@ -58,7 +59,7 @@ public class Player : Singleton<Player>
         data.FireDelayTime = 0.2f;
         state = Define.PlayerState.Stand;
 
-        data.Power = 10;
+        data.Power = 1;
         data.Level = 1;
         data.KillCount = 0;
         data.maxExp = 100;
@@ -82,6 +83,8 @@ public class Player : Singleton<Player>
 
     void Update()
     {
+        if (state == Define.PlayerState.Dead)
+            return;
         if (Define.state != Define.GameState.Play)
             return;
 
@@ -172,5 +175,28 @@ public class Player : Singleton<Player>
     {
         data.Exp += value;
     }
+    public void Dead()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 0;
+        UI.Instance.gameoverPopup.gameObject.SetActive(true);
+    }
 
+    public void Hit()
+    {
+        data.HP -= 20;
+        if (data.HP <= 0)
+        {
+            state = Define.PlayerState.Dead;
+            sa.SetSprite(deadSprite, 0.5f);
+            Invoke("Dead",2f);
+        }
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Hit();
+        }
+    }
 }

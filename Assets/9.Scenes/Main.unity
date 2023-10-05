@@ -2638,6 +2638,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p: {fileID: 162811203878137482, guid: dcea74a8171bc2748af15aee7995b8d2, type: 3}
   characterIndex: -1
+  gameTime: 0
+  maxGameTime: 20
 --- !u!4 &1628129685
 Transform:
   m_ObjectHideFlags: 0

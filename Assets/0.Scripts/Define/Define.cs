@@ -23,10 +23,10 @@ public static class Define
         private int level;
         private int killCount;
         private float curExp;
-        private int hp;
+        private float hp;
         private float radius;
         public float maxExp;
-        public int maxHp;
+        public float maxHp;
         public float Radius
         {
             get { return radius; }
@@ -35,13 +35,13 @@ public static class Define
                 radius = value;
             }
         }
-        public int HP
+        public float HP
         {
             get { return hp; }
             set
             {
                 hp = value;
-                //PlayerHpbar.Instance.SetHp(hp / maxHp);
+                PlayerHpbar.Instance.SetHp(hp / maxHp);
 
             }
         }

@@ -5,9 +5,6 @@ using System.Linq;
 
 public abstract class Enemy : Singleton<Enemy>
 {
-    public float speed;
-    public float health;
-    public float maxHealth;
     [SerializeField] public List<Sprite> moveSprites;
     [SerializeField] private List<Sprite> hitSprites;
     [SerializeField] private List<Sprite> deadSprites;
@@ -102,10 +99,11 @@ public abstract class Enemy : Singleton<Enemy>
         {
             GetComponent<CapsuleCollider2D>().enabled = false;
             sa.SetSprite(deadSprites, 0.5f,DropItem);
-            if (target.GetComponent<Player>())
-            {
-                target.GetComponent<Player>().data.KillCount++;
-            }
+            /*            if (target.GetComponent<Player>())
+                        {
+                            target.GetComponent<Player>().data.KillCount++;
+                        }*/
+            target.GetComponent<Player>().data.KillCount++;
             target = null;
 
         }

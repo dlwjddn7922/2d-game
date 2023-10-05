@@ -28,7 +28,7 @@ public class GameManager : Singleton<GameManager>
             Player player  = Instantiate(p);
             player.standSprite = ResManager.Instance.playerRes[characterIndex].standSprite;
             player.moveSprite = ResManager.Instance.playerRes[characterIndex].moveSprite;
-            //player.standSprite = ResManager.Instance.playerRes[characterIndex].standSprite;
+            player.deadSprite = ResManager.Instance.playerRes[characterIndex].deadSprite;
             DontDestroyOnLoad(p.gameObject);
         }
     }
