@@ -41,10 +41,13 @@ public class SpriteAnimation : MonoBehaviour
             }
             else
             {
-                if(action != null)
+                if(sprites.Count == animationIndex)
                 {
-                    action();
-                    action = null;
+                    if (action != null)
+                    {
+                        action();
+                        action = null;
+                    }
                 }
             }
         }
@@ -74,12 +77,12 @@ public class SpriteAnimation : MonoBehaviour
         sr.sprite = sprites[0];
     }
 
-    public void SetSprite(List<Sprite> sprite, float endDelay, UnityAction action)
+    public void SetSprite(List<Sprite> sprite, float delay, UnityAction action)
     {
         Init();
 
         sprites = sprite.ToList();
-        this.delay = endDelay;
+        this.delay = delay;
         this.isLoop = false;
 
         this.action = action;

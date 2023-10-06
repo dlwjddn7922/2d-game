@@ -8,9 +8,10 @@ public class Player : Singleton<Player>
     private SpriteRenderer sr;
 
     [SerializeField] public PoolManager pool;
-    [HideInInspector] public List<Sprite> standSprite;
-    [HideInInspector] public List<Sprite> moveSprite;
-    [HideInInspector] public List<Sprite> deadSprite;
+    [SerializeField] public List<Sprite> standSprite;
+    [SerializeField] public List<Sprite> moveSprite;
+    [SerializeField] public List<Sprite> deadSprite;
+    //[SerializeField] public List<Sprite> attackSprite;
     [SerializeField] private Transform fireTrans;
     [HideInInspector]
     public Define.PlayerData data = new Define.PlayerData();
@@ -50,10 +51,10 @@ public class Player : Singleton<Player>
         }
     }
     void Start()
-    {
+    {        
         sa = GetComponent<SpriteAnimation>();
         sr = GetComponent<SpriteRenderer>();
-        sa.SetSprite(standSprite, 0.2f);
+        //sa.SetSprite(standSprite, 0.2f);
         //Shield = 0;
         data.Speed = 3f;
         data.FireDelayTime = 0.2f;
@@ -188,15 +189,15 @@ public class Player : Singleton<Player>
         if (data.HP <= 0)
         {
             state = Define.PlayerState.Dead;
-            sa.SetSprite(deadSprite, 0.5f);
-            Invoke("Dead",2f);
+            sa.SetSprite(deadSprite, 0.1f,Dead);          
         }
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            Hit();
+            if(state != Define.PlayerState.Dead)
+                Hit();
         }
     }
 }
