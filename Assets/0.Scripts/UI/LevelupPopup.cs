@@ -11,6 +11,7 @@ public class LevelupPopup : MonoBehaviour
     [SerializeField] private Transform bg;
 
     [SerializeField] private List<ItemData> itemDatas;
+    public ItemData data;
 
     [System.Serializable]
     public class LevelUPUI
@@ -61,8 +62,9 @@ public class LevelupPopup : MonoBehaviour
     {
         
     }
-    public void OnSelect(int index)
+    public void OnSelect()
     {
+
         Define.state = Define.GameState.Play;
     }
 }

@@ -21,7 +21,7 @@ public class Player : Singleton<Player>
     [SerializeField] private Transform shield;
     private List<Transform> shields = new List<Transform>();
 
-    private int shieldCnt = 0;
+    public int shieldCnt = 0;
     private float shieldSpeed = 100f;
     private float fireTimer = float.MaxValue;
     //private float radius = 3f;
@@ -29,7 +29,7 @@ public class Player : Singleton<Player>
     {
         set
         {
-            if(value > 0)
+            if (value > 0)
             {
                 for (int i = shields.Count - 1; i >= 0; i--)
                 {
@@ -47,7 +47,7 @@ public class Player : Singleton<Player>
                     shields.Add(t);
                     startAngle += angle;
                 }
-            }            
+            }
         }
     }
     void Start()
@@ -60,7 +60,7 @@ public class Player : Singleton<Player>
         data.FireDelayTime = 0.2f;
         state = Define.PlayerState.Stand;
 
-        data.Power = 1;
+        data.Power = 10;
         data.Level = 1;
         data.KillCount = 0;
         data.maxExp = 100;
@@ -113,7 +113,7 @@ public class Player : Singleton<Player>
             state = Define.PlayerState.Stand;
         }
 
-        if(Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             Shield = ++shieldCnt;
         }
@@ -121,7 +121,7 @@ public class Player : Singleton<Player>
         {
             Shield = --shieldCnt;
         }
-        if(shields.Count != 0)
+        if (shields.Count != 0)
         {
             foreach (var s in shields)
             {

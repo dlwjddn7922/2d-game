@@ -7,6 +7,9 @@ using TMPro;
 [CreateAssetMenu(fileName = "ItemData", menuName = "ItemData/Data")]
 public class ItemData : ScriptableObject
 {
+    public enum ItemType { Melee, Range, Glove, Shoe, Heal }
+    public int itemId;
+    public ItemType type;
     [SerializeField] private Sprite icon;
     [SerializeField] private string weapon;
     [TextArea(1,10)]

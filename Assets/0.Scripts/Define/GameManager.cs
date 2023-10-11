@@ -12,6 +12,9 @@ public class GameManager : Singleton<GameManager>
 
     public float gameTime;
     public float maxGameTime = 2 * 10f;
+    public PoolManager epool;
+    public PoolManager wpool;
+    public Player player;
 
     void Start()
     {
