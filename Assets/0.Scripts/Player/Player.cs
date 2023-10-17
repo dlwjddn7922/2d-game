@@ -24,6 +24,8 @@ public class Player : Singleton<Player>
     public int shieldCnt = 0;
     private float shieldSpeed = 100f;
     private float fireTimer = float.MaxValue;
+    Rigidbody2D rigid;
+    [SerializeField] private bl_Joystick js;
     //private float radius = 3f;
     public int Shield
     {
@@ -54,6 +56,8 @@ public class Player : Singleton<Player>
     {        
         sa = GetComponent<SpriteAnimation>();
         sr = GetComponent<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
+
         //sa.SetSprite(standSprite, 0.2f);
         //Shield = 0;
         data.Speed = 3f;
@@ -89,25 +93,36 @@ public class Player : Singleton<Player>
         if (Define.state != Define.GameState.Play)
             return;
 
-        float x = Input.GetAxisRaw("Horizontal");
+        /*float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
+
         Vector3 playervec = new Vector3(x, y, 0);
-        transform.Translate(playervec * Time.deltaTime * data.Speed);
+        transform.Translate(playervec * Time.deltaTime * data.Speed);*/
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        // 스틱이 향해있는 방향을 저장해준다.
+        Vector3 dir = new Vector3(js.Horizontal, js.Vertical, 0);
+
+        // Vector의 방향은 유지하지만 크기를 1로 줄인다. 길이가 정규화 되지 않을시 0으로 설정.
+        dir.Normalize();
+
+        // 오브젝트의 위치를 dir 방향으로 이동시킨다.
+        transform.position += dir * data.Speed * Time.deltaTime;
 
         //방향전환
-        if(x != 0)
+        if (js.Horizontal != 0)
         {
-            sr.flipX = x < 0 ? true : false;
+            sr.flipX = js.Horizontal < 0 ? true : false;
         }
         //stand, move 스프라이트 전환
-        if ((y != 0 || x != 0) && state != Define.PlayerState.Move)
+        if ((js.Vertical != 0 || js.Horizontal != 0) && state != Define.PlayerState.Move)
         {
             sa.SetSprite(moveSprite, 0.1f);
             state = Define.PlayerState.Move;
 
         }
-        else if (y == 0 && x == 0 && state != Define.PlayerState.Stand)
+        else if (js.Vertical == 0 && js.Horizontal == 0 && state != Define.PlayerState.Stand)
         {
             sa.SetSprite(standSprite, 0.2f);
             state = Define.PlayerState.Stand;

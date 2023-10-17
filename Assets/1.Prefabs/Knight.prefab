@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 3172045535313045261}
   m_Layer: 0
   m_Name: Knight
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 68b0159974b8f1c4fabb133d28ac2a9d, type: 3}
   fireTrans: {fileID: 3172045535968694551}
   shield: {fileID: 4434951787877093013, guid: 100d99d28dd6b724ca6f06640c8cb014, type: 3}
+  shieldCnt: 0
 --- !u!114 &3172045535313045296
 MonoBehaviour:
   m_ObjectHideFlags: 0

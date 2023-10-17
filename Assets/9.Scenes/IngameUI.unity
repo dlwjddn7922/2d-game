@@ -3559,6 +3559,9 @@ MonoBehaviour:
   characterIndex: -1
   gameTime: 0
   maxGameTime: 20
+  epool: {fileID: 0}
+  wpool: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1476030778
 Transform:
   m_ObjectHideFlags: 0
@@ -5142,6 +5145,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cad1742f89b715348a35590c611d1dd6, type: 2}
   - {fileID: 11400000, guid: 2b2fb2366d4291445b7161d5dffc5525, type: 2}
   - {fileID: 11400000, guid: 60bd6b584d539314eb39304971f6b0af, type: 2}
+  data: {fileID: 0}
   levelUPUIs:
   - icon: {fileID: 1099336138}
     lvText: {fileID: 1517295922}
